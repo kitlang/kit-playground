@@ -25,6 +25,8 @@ def compile():
         with open(source_file, 'w') as f:
             f.write(str(data))
 
+        print(str(data))
+
         with open(os.devnull, 'w') as devnull, open(output_log, 'w') as output:
             process = subprocess.Popen(
                 ['timeout', '30', 'kitc', '--build-dir', tmpdir, '-q', '--build', 'none', '--host', 'emscripten', source_file, '-o', output_file, '-l', '-s', '-l', 'WASM=0', '-l', '-s', '-l', 'EXIT_RUNTIME=1'],
