@@ -1,3 +1,4 @@
+import argparse
 import os
 import shutil
 import subprocess
@@ -52,4 +53,8 @@ def compile():
         shutil.rmtree(tmpdir)
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0')
+    parser = argparse.ArgumentParser(description="Kit playground")
+    parser.add_argument('-p', '--port', type=int, default=5000, help='port to listen on')
+    parser.add_argument('-n', '--processes', type=int, default=8, help='number of concurrent processes to handle requests')
+    args = parser.parse_args()
+    app.run(host='0.0.0.0', port=args.port, threaded=False, processes=args.processes)

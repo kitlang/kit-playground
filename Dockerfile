@@ -31,4 +31,5 @@ RUN pip install -r requirements.txt
 ADD playground.py /app/
 EXPOSE 5000
 
-CMD ["python", "playground.py"]
+ARG PLAYGROUND_ARGS=
+CMD python playground.py ${PLAYGROUND_ARGS}
